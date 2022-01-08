@@ -1716,7 +1716,7 @@ function desktop_environment_budgie() {
 }
 
 function desktop_environment_bspwm() {
-    pacman_install "bspwm lightdm lightdm-gtk-greeter"
+    pacman_install "bspwm lightdm lightdm-gtk-greeter xorg-server"
     arch-chroot /mnt systemctl enable lightdm.service
 }
 
@@ -2025,4 +2025,3 @@ function main() {
 }
 
 main $@
-
