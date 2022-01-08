@@ -180,9 +180,11 @@ function warning() {
     echo "We will mount your system based on the settings"
     echo "of the alis-recovery.conf file."
     echo
-	echo "You will need to arch-chroot into /mnt"
-	echo "arch-chroot /mnt"
-	echo
+    echo "You will need to arch-chroot into /mnt"
+    echo "arch-chroot /mnt"
+    echo
+    echo "or you can set the parameter CHROOT in the alis-recovery.conf to true."
+    echo
     echo "Once recovery tasks are finalized execute following commands:"
     echo "exit, umount -R /mnt and reboot."
     echo ""
