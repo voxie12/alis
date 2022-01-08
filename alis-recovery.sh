@@ -403,7 +403,7 @@ main
 echo
 echo "Your system has been mounted in /mnt."
 echo "Chroot into your system with"
-echo "arch-chroot /mnt
+echo "arch-chroot /mnt"
 echo "Once recovery tasks are finalized execute following commands:"
 echo "Get out of arch-chroot"
 echo "exit"
