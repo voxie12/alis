@@ -400,4 +400,6 @@ function main() {
 }
 
 main
-
+echo
+echo "Once finalized recovery tasks execute following commands:"
+echo "exit, umount -R /mnt, reboot."
