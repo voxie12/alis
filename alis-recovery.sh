@@ -402,7 +402,11 @@ function main() {
 main
 echo
 echo "Your system has been mounted in /mnt."
-echo
+echo "Chroot into your system with"
+echo "arch-chroot /mnt
 echo "Once recovery tasks are finalized execute following commands:"
+echo "Get out of arch-chroot"
+echo "exit"
+echo "To unmount"
 echo "umount -R /mnt"
-echo "and reboot."
+echo "Now you can reboot."
