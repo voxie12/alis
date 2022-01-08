@@ -404,4 +404,5 @@ echo
 echo "Your system has been mounted in /mnt."
 echo
 echo "Once recovery tasks are finalized execute following commands:"
-echo "umount -R /mnt and reboot."
+echo "umount -R /mnt"
+echo "and reboot."
