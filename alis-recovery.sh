@@ -401,6 +401,7 @@ function main() {
 
 main
 echo
-echo "Once finalized recovery tasks execute following commands:"
 echo "Your system has been mounted in /mnt."
+echo
+echo "Once finalized recovery tasks execute following commands:"
 echo "umount -R /mnt and reboot."
