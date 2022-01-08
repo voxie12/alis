@@ -176,11 +176,11 @@ function check_variables_size() {
 function warning() {
     echo -e "${LIGHT_BLUE}Welcome to Arch Linux Install Script Recovery${NC}"
     echo ""
-    echo "We will chroot in your current system based on the settings"
+    echo "We will use arch-chroot and mount your system based on the settings"
     echo "of the alis-recovery.conf file."
     echo
     echo "Once finalized recovery tasks execute following commands:"
-    echo "exit, umount -R /mnt, reboot."
+    echo "umount -R /mnt, reboot."
     echo ""
     read -p "Do you want to continue? [y/N] " yn
     case $yn in
@@ -402,4 +402,4 @@ function main() {
 main
 echo
 echo "Once finalized recovery tasks execute following commands:"
-echo "exit, umount -R /mnt, reboot."
+echo "umount -R /mnt and reboot."
