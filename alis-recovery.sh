@@ -385,7 +385,7 @@ function partition() {
     if [ "$FILE_SYSTEM_TYPE" == "btrfs" ]; then
         # mount subvolumes
         mount -o "subvol=${BTRFS_SUBVOLUME_ROOT[1]},$PARTITION_OPTIONS,compress=zstd" "$DEVICE_ROOT" "/mnt"
-        mkdir "/mnt/boot"
+        mkdir -p /mnt/boot
         mount -o "$PARTITION_OPTIONS_BOOT" "$PARTITION_BOOT" "/mnt/boot"
         for I in "${BTRFS_SUBVOLUMES_MOUNTPOINTS[@]}"; do
             IFS=',' SUBVOLUME=($I)
@@ -405,23 +405,19 @@ function partition() {
     else
         mount -o "$PARTITION_OPTIONS_ROOT" "$DEVICE_ROOT" /mnt
 
-        mkdir /mnt/boot
+        mkdir -p /mnt/boot
         mount -o "$PARTITION_OPTIONS_BOOT" "$PARTITION_BOOT" /mnt/boot
     fi
 }
 
 function recovery() {
-    arch-chroot /mnt /usr/bin/bash
+    arch-chroot /mnt
 }
 
 function end() {
-    if [ "$CHROOT" == "true" ]; then
-        echo ""
-        echo "Recovery finalized. You must do an explicit reboot (./alis-reboot.sh)."
-    else
-        echo ""
-        echo "Recovery started. You must do an explicit reboot after finalize recovery (exit if in arch-chroot, ./alis-reboot.sh)."
-    fi
+    echo ""
+    echo -e "${GREEN}Recovery started.${NC} You must do an explicit reboot after finalize recovery (exit if in arch-chroot, ./alis-reboot.sh)."
+    echo ""
 }
 
 function do_reboot() {

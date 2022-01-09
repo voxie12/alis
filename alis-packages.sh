@@ -207,10 +207,9 @@ function packages_pacman() {
     print_step "packages_pacman()"
 
     if [ "$PACKAGES_PACMAN_INSTALL" == "true" ]; then
-        # COMMENT="#"
-        # CUSTOM_REPOSITORIES="$(echo "$PACKAGES_PACMAN_CUSTOM_REPOSITORIES" | grep -E "^[^#]|\n^$")"
+        # CUSTOM_REPOSITORIES="$(echo "$PACKAGES_PACMAN_CUSTOM_REPOSITORIES" | grep -E "^[^#]|\n^$"; exit 0)"
         # if [ -n "$CUSTOM_REPOSITORIES" ]; then
-        #     execute_sudo "echo -e "${COMMENT}alis\n$CUSTOM_REPOSITORIES" >> /etc/pacman.conf"
+        #     execute_sudo "echo -e \"# alis\n$CUSTOM_REPOSITORIES\" >> /etc/pacman.conf"
         # fi
 
         if [ -n "$PACKAGES_PACMAN" ]; then
