@@ -1,11 +1,11 @@
 # alis
 
-![Arch Linux](https://img.shields.io/badge/-ArchLinux-black?logo=arch-linux)
-![Bash](https://img.shields.io/badge/sh-bash-black)
+![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-badge.svg)
+![Bash](https://raw.githubusercontent.com/picodotdev/alis/master/images/sh-bash-badge.svg)
 
-Arch Linux Install Script (or alis) installs unattended, automated and customized Arch Linux system.
+Arch Linux Install Script (or alis, also known as _the Arch Linux executable installation guide and wiki_) installs unattended, automated and customized Arch Linux system.
 
-It is a simple bash script that fully automates the installation of a Arch Linux system after booting from the original Arch Linux installation media. It contains the same commands that you would type and execute one by one interactively to complete the installation. The only user intervention needed is to edit a configuration file to choose the installation options and preferences from partitioning, to encryption, bootloader, file system, language and keyboard mapping, desktop environment, kernels, packages to install and graphic drivers. This automation makes the installation easy and fast, fast as less than 4 minutes.
+It is a simple bash script based in many Arch Linux Wiki pages that fully automates the installation of a Arch Linux system after booting from the original Arch Linux installation media. It contains the same commands that you would type and execute one by one interactively to complete the installation. The only user intervention needed is to edit a configuration file to choose the installation options and preferences from partitioning, to encryption, bootloader, file system, language and keyboard mapping, desktop environment, kernels, packages to install and graphic drivers. This automation makes the installation easy and fast, fast as less than 4 minutes.
 
 If some time later after an system update for any reason the system does not boot correctly a recovery script is also provided to enter in a recovery mode that allows to downgrade packages or execute any other commands to restore the system. Also a log of the installation can be taken with <a href="https://asciinema.org/">asciinema</a>.
 
@@ -21,23 +21,25 @@ For new features, improvements and bugs fill an issue in GitHub or make a pull r
 
 **Arch Linux Install Script (alis) is based on Arch Linux but is NOT approved, sponsored, or affiliated with Arch Linux or its related projects.**
 
-[![Arch Linux](https://picodotdev.github.io/alis/images/logos/archlinux.svg "Arch Linux")](https://www.archlinux.org/)
+[![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux.svg "Arch Linux")](https://www.archlinux.org/)
 
-### Index
+## Index
 
 * [Principles](https://github.com/picodotdev/alis#principles)
 * [Features](https://github.com/picodotdev/alis#features)
 * [System installation](https://github.com/picodotdev/alis#system-installation)
 * [Packages installation](https://github.com/picodotdev/alis#packages-installation)
 * [Recovery](https://github.com/picodotdev/alis#recovery)
+* [Screenshots](https://github.com/picodotdev/alis#screenshots)
 * [Video](https://github.com/picodotdev/alis#video)
 * [How you can help](https://github.com/picodotdev/alis#how-you-can-help)
 * [Media reference](https://github.com/picodotdev/alis#media-reference)
+* [Alternatives](https://github.com/picodotdev/alis#alternatives)
 * [Test in VirtualBox with Packer](https://github.com/picodotdev/alis#test-in-virtualbox-with-packer)
 * [Arch Linux Installation Media](https://github.com/picodotdev/alis#arch-linux-installation-media)
 * [Reference](https://github.com/picodotdev/alis#reference)
 
-### Principles
+## Principles
 
 * Use the original Arch Linux installation media
 * As much unattended and automated as possible, require as little interactivity as possible
@@ -45,7 +47,7 @@ For new features, improvements and bugs fill an issue in GitHub or make a pull r
 * Provide support for system recovery
 * Provide support for installation log
 
-### Features
+## Features
 
 * **System**: UEFI, BIOS
 * **Storage**: SATA, NVMe and MMC
@@ -69,6 +71,7 @@ For new features, improvements and bugs fill an issue in GitHub or make a pull r
 * **systemd-homed** support
 * **PipeWire** support
 * **Multilib** support
+* **Provision configuration files** support
 * Arch Linux custom **packages installation** and **repositories installation**
 * Flatpak utility installation and **Flatpak packages installation**
 * SDKMAN utility installation and **SDKMAN packages installation**
@@ -81,7 +84,7 @@ For new features, improvements and bugs fill an issue in GitHub or make a pull r
 * Wait after installation for an **abortable reboot**
 * **Use your own configuration**
 
-### System installation
+## System installation
 
 Download and boot from the latest <a href="https://www.archlinux.org/download/">original Arch Linux installation media</a>. After boot use the following commands to start the installation.
 
@@ -115,7 +118,7 @@ Advanced usage
 # ./alis-reboot.sh        # (Optional) Reboot the system, only necessary when REBOOT="false"
 ```
 
-### Packages installation
+## Packages installation
 
 After the base Arch Linux system is installed, alis can install packages with pacman, Flatpak, SDKMAN and from AUR.
 
@@ -128,7 +131,7 @@ After the base Arch Linux system is installed, alis can install packages with pa
 # ./alis-packages.sh               # Start packages installation
 ```
 
-### Recovery
+## Recovery
 
 Boot from the latest <a href="https://www.archlinux.org/download/">original Arch Linux installation media</a>. After boot use the following commands to start the recovery, this will allow you to enter in the arch-chroot environment.
 
@@ -144,13 +147,25 @@ Boot from the latest <a href="https://www.archlinux.org/download/">original Arch
 # ./alis-recovery-reboot.sh        # Reboot the system
 ```
 
-### Video
+## Screenshots
+
+These are some desktop environments that can be installed.
+
+[![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-gnome-thumb.jpg "Arch Linux with GNOME")](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-gnome.jpg)
+[![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-kde-thumb.jpg "Arch Linux with KDE")](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-kde.jpg)
+[![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-xfce-thumb.jpg "Arch Linux with XFCE")](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-xfce.jpg)
+[![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-cinnamon-thumb.jpg "Arch Linux with Cinnamon")](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-cinnamon.jpg)
+[![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-mate-thumb.jpg "Arch Linux with Mate")](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-mate.jpg)
+[![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-lxde-thumb.jpg "Arch Linux with LXDE")](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-lxde.jpg)
+[![Arch Linux](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-root-password-thumb.png "Arch Linux unloking LUKS on boot")](https://raw.githubusercontent.com/picodotdev/alis/master/images/archlinux-root-password.png)
+
+## Video
 
 Arch Linux base installation installed in **less than 4 minutes** with a fiber internet connection and a NVMe SSD. Don't trust me? See the video.
 
 [![asciicast](https://asciinema.org/a/444025.png)](https://asciinema.org/a/444025)
 
-### How you can help
+## How you can help
 
 * Test in VirtualBox and create an issue if something does not work, attach the main parts of the used configuration file and the error message
 * Create issues with new features
@@ -164,7 +179,24 @@ Arch Linux base installation installed in **less than 4 minutes** with a fiber i
 * 2020.07 [Arch installer - alis](https://r1ce.net/2020/07/07/arch-installer-alis/)
 * 2019.06 [Arch Linux OS Challenge: Install Arch 'The Easy Way' With These 2 Alternative Methods](https://www.forbes.com/sites/jasonevangelho/2019/06/10/arch-linux-os-challenge-2-alternatives-install-gui-script-easy/)
 
-### Test in VirtualBox with Packer
+## Alternatives
+
+There are other quite good similar projects that can be used as alternative to install a vanilla Arch Linux without any additions.
+
+* [Arch Installer](https://github.com/archlinux/archinstall) (included in the installation media)
+* [archfi](https://github.com/MatMoul/archfi/)
+* [Archlinux Ultimate Installer (aui)](https://github.com/helmuthdu/aui) (only accepts patches)
+
+Also, if you prefer to install an Arch Linux using a guided graphical installer you can choose an [Arch based distribution](https://wiki.archlinux.org/title/Arch-based_distributions#Active). 
+
+* [ArcoLinux](https://arcolinux.com/)
+* [Manjaro](https://manjaro.org/)
+* [EndeavourOS](https://endeavouros.com/)
+* [Archlabs](https://archlabslinux.com/)
+* [RebornOS](https://rebornos.org/)
+* [BlackArch](https://blackarch.org/)
+
+## Test in VirtualBox with Packer
 
 VirtualBox and [Packer](https://packer.io/) are required.
 
@@ -185,11 +217,11 @@ $ ./alis-packer.sh -c alis-packer-efi-ext4-grub-kde.sh
 $ ./alis-packer.sh -c alis-packer-efi-ext4-grub-xfce.sh
 ```
 
-### Arch Linux Installation Media
+## Arch Linux Installation Media
 
 https://www.archlinux.org/download/
 
-### Reference
+## Reference
 
 * https://archlinux.org/pacman/pacman.conf.5.html#_repository_sections
 * https://tldp.org/LDP/abs/html/
