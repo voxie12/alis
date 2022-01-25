@@ -439,7 +439,7 @@ function partition() {
             fi
             pvs $DEVICE_LVM
             if [ $? == 0 ]; then
-                pvremove -y $LVM_DEVICE
+                pvremove -y $DEVICE_LVM
             fi
             set -e
 
@@ -1475,12 +1475,12 @@ function desktop_environment() {
             ;;
         "openbox" )
             desktop_environment_openbox
-                ;;
-        "dusk" )
-                desktop_environment_dusk
-                ;;
+            ;;
         "leftwm" )
             desktop_environment_leftwm
+            ;;
+        "dusk" )
+            desktop_environment_dusk
             ;;
     esac
 
@@ -1558,16 +1558,13 @@ function desktop_environment_openbox() {
     arch-chroot /mnt systemctl enable lightdm.service
 }
 
-function desktop_environment_dusk() {
-    #dusk-git in AUR - set in alis-packages.conf
-    pacman_install "dmenu xterm lightdm lightdm-gtk-greeter xorg-server"
+function desktop_environment_leftwm() {
+    aur_install "leftwm-git leftwm-theme-git dmenu xterm lightdm lightdm-gtk-greeter xorg-server"
     arch-chroot /mnt systemctl enable lightdm.service
 }
 
-function desktop_environment_leftwm() {
-    #leftwm-git in AUR - set in alis-packages.conf
-    #leftwm-theme-git in AUR - set in alis-packages.conf
-    pacman_install "dmenu xterm lightdm lightdm-gtk-greeter xorg-server"
+function desktop_environment_dusk() {
+    aur_install "dusk-git dmenu xterm lightdm lightdm-gtk-greeter xorg-server"
     arch-chroot /mnt systemctl enable lightdm.service
 }
 
