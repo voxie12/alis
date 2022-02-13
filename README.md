@@ -5,9 +5,12 @@
 
 Arch Linux Install Script (or alis, also known as _the Arch Linux executable installation guide and wiki_) installs unattended, automated and customized Arch Linux system.
 
-It is a simple bash script based in many Arch Linux Wiki pages that fully automates the installation of a Arch Linux system after booting from the original Arch Linux installation media. It contains the same commands that you would type and execute one by one interactively to complete the installation. The only user intervention needed is to edit a configuration file to choose the installation options and preferences from partitioning, to encryption, bootloader, file system, language and keyboard mapping, desktop environment, kernels, packages to install and graphic drivers. This automation makes the installation easy and fast, fast as less than 4 minutes.
+It is a simple Bash script developed from many Arch Linux Wiki pages that fully automates the installation of a [Arch Linux](https://archlinux.org/) system after booting from the original Arch Linux installation media. It contains the same commands that you would type and execute one by one interactively to complete the installation. The only user intervention needed is to edit a configuration file to choose the installation options and preferences from partitioning, to encryption, bootloader, file system, language and keyboard mapping, desktop environment, kernels, packages to install and graphic drivers. This automation makes the installation easy and fast, as fast as your internet connection allows.
 
 If some time later after an system update for any reason the system does not boot correctly a recovery script is also provided to enter in a recovery mode that allows to downgrade packages or execute any other commands to restore the system. Also a log of the installation can be taken with <a href="https://asciinema.org/">asciinema</a>.
+
+A simple powerful Bash based script for an unattended, easy and fast way to install Arch Linux.
+Boot. Get. Configure. Install. Enjoy.
 
 **Warning! This script can delete all partitions of the persistent storage. It is recommended to test it first in a virtual machine like <a href="https://www.virtualbox.org/">VirtualBox</a>.**
 
@@ -30,6 +33,7 @@ For new features, improvements and bugs fill an issue in GitHub or make a pull r
 * [System installation](https://github.com/picodotdev/alis#system-installation)
 * [Packages installation](https://github.com/picodotdev/alis#packages-installation)
 * [Recovery](https://github.com/picodotdev/alis#recovery)
+* [SSH install and cloud-init](https://github.com/picodotdev/alis#ssh-install-and-cloud-init)
 * [Screenshots](https://github.com/picodotdev/alis#screenshots)
 * [Video](https://github.com/picodotdev/alis#video)
 * [How you can help](https://github.com/picodotdev/alis#how-you-can-help)
@@ -46,6 +50,7 @@ For new features, improvements and bugs fill an issue in GitHub or make a pull r
 * Allow to customize the installation to cover the most common cases
 * Provide support for system recovery
 * Provide support for installation log
+* Use sane configuration default values
 
 ## Features
 
@@ -72,6 +77,7 @@ For new features, improvements and bugs fill an issue in GitHub or make a pull r
 * **PipeWire** support
 * **Multilib** support
 * **Files provision** support
+* **SSH install** and **cloud-init** support
 * Arch Linux custom **packages installation** and **repositories installation**
 * Flatpak utility installation and **Flatpak packages installation**
 * SDKMAN utility installation and **SDKMAN packages installation**
@@ -147,7 +153,31 @@ Boot from the latest <a href="https://www.archlinux.org/download/">original Arch
 # ./alis-recovery-reboot.sh        # Reboot the system
 ```
 
+## SSH install and cloud-init
+
+SSH install and cloud-init allows to install Arch Linux unattended and automated way in local virtual machines and cloud environments.
+
+Build the cloud-init ISO, mount it in the VM along side the official Arch Linux installation media, start the VM and get its IP address.
+
+```
+$ ./alis-cloud-init-iso.sh
+```
+
+SSH to the VM.
+
+```
+$ ./alis-cloud-init-ssh.sh -i "${IP_ADDRESS}"
+```
+
+Or, start a unattended installation with the provided configuration.
+
+```
+$ ./alis-cloud-init-ssh.sh -i "${IP_ADDRESS}" -c "alis-config-efi-ext4-systemd.sh"
+```
+
 ## Screenshots
+
+Once the installation ends you have a ready to use system with your choosen preferences including all the free software latest version you wish to do produtive task from browsing, multimedia and office programs, to programming languages, compilers and server software and tools for creative and artistic tasks.
 
 These are some desktop environments that can be installed.
 
@@ -161,7 +191,9 @@ These are some desktop environments that can be installed.
 
 ## Video
 
-Arch Linux base installation installed in **less than 4 minutes** with a fiber internet connection and a NVMe SSD. Don't trust me? See the video.
+Arch Linux base installation installed in less than 4 minutes with a fiber internet connection and a NVMe SSD. Don't trust me? See the video.
+
+Type the system installation commands and wait to the installation complete. After a reboot the system is ready to use and customized with your choosen preferences.
 
 [![asciicast](https://asciinema.org/a/444025.png)](https://asciinema.org/a/444025)
 
@@ -183,7 +215,7 @@ Arch Linux base installation installed in **less than 4 minutes** with a fiber i
 
 There are other quite good similar projects that can be used as alternative to install a vanilla Arch Linux without any additions.
 
-* [Arch Installer](https://github.com/archlinux/archinstall) (included in the installation media)
+* [Arch Installer](https://github.com/archlinux/archinstall) (archinstall) (maybe is the most relevant as is included in the official installation media)
 * [archfi](https://github.com/MatMoul/archfi/)
 * [Archlinux Ultimate Installer (aui)](https://github.com/helmuthdu/aui) (only accepts patches)
 
@@ -228,6 +260,7 @@ https://www.archlinux.org/download/
 ## Reference
 
 * https://archlinux.org/pacman/pacman.conf.5.html#_repository_sections
+* https://gitlab.archlinux.org/archlinux/archiso/-/blob/master/configs/releng/packages.x86_64
 * https://tldp.org/LDP/abs/html/
 * https://tldp.org/LDP/Bash-Beginners-Guide/html/
 * https://wiki.archlinux.org/title/AMDGPU
@@ -239,6 +272,7 @@ https://www.archlinux.org/download/
 * https://wiki.archlinux.org/title/Btrfs
 * https://wiki.archlinux.org/title/Budgie
 * https://wiki.archlinux.org/title/Category:Boot_loaders
+* https://wiki.archlinux.org/title/Cloud-init
 * https://wiki.archlinux.org/title/Command-line_shell
 * https://wiki.archlinux.org/title/Deepin_Desktop_Environment
 * https://wiki.archlinux.org/title/Desktop_environment
@@ -256,6 +290,7 @@ https://www.archlinux.org/download/
 * https://wiki.archlinux.org/title/GRUB
 * https://wiki.archlinux.org/title/Hardware_video_acceleration
 * https://wiki.archlinux.org/title/I3
+* https://wiki.archlinux.org/title/Install_Arch_Linux_via_SSH
 * https://wiki.archlinux.org/title/Installation_guide
 * https://wiki.archlinux.org/title/Intel_graphics
 * https://wiki.archlinux.org/title/Intel_NUC

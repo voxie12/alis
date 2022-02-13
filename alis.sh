@@ -125,7 +125,6 @@ function check_variables() {
     check_variables_value "TIMEZONE" "$TIMEZONE"
     check_variables_value "LOCALES" "$LOCALES"
     check_variables_value "LOCALE_CONF" "$LOCALE_CONF"
-    check_variables_value "LANG" "$LANG"
     check_variables_value "KEYMAP" "$KEYMAP"
     check_variables_value "HOSTNAME" "$HOSTNAME"
     check_variables_value "USER_NAME" "$USER_NAME"
@@ -162,7 +161,12 @@ function warning() {
     echo -e "${RED}This script deletes all partitions of the persistent${NC}"
     echo -e "${RED}storage and continuing all your data in it will be lost.${NC}"
     echo ""
-    read -p "Do you want to continue? [y/N] " yn
+    if [ "$WARNING_CONFIRM" == "true" ]; then
+        read -p "Do you want to continue? [y/N] " yn
+    else
+        yn="y"
+        sleep 2
+    fi
     case $yn in
         [Yy]* )
             ;;
@@ -518,6 +522,8 @@ function partition() {
 function install() {
     print_step "install()"
 
+    pacman -Sy --noconfirm archlinux-keyring
+
     if [ -n "$PACMAN_MIRROR" ]; then
         echo "Server = $PACMAN_MIRROR" > /etc/pacman.d/mirrorlist
     fi
@@ -729,7 +735,7 @@ function users() {
         create_user "$USER" "$PASSWORD" "$USERS_GROUPS"
     done
 
-    arch-chroot /mnt sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+    arch-chroot /mnt sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
     pacman_install "xdg-user-dirs"
 
@@ -1250,7 +1256,7 @@ function bootloader_systemd() {
     cat <<EOT > "/mnt$ESP_DIRECTORY/loader/loader.conf"
 # alis
 timeout 5
-default archlinux
+default archlinux.conf
 editor 0
 EOT
 
@@ -1712,6 +1718,15 @@ function copy_logs() {
 function main() {
     local START_TIMESTAMP=$(date -u +"%F %T")
     init_config
+
+    while getopts "w" arg; do
+        case $arg in
+            w)
+                WARNING_CONFIRM="false"
+                ;;
+        esac
+    done
+
     execute_step "sanitize_variables"
     execute_step "check_variables"
     execute_step "warning"
