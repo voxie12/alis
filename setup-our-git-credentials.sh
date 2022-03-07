@@ -55,7 +55,7 @@ echo
 echo "Select the correct desktop"
 echo
 echo "0.  Do nothing"
-echo "1.  Erik"
+echo "1.  Jay"
 echo "2.  Raniel"
 echo "3.  Steve"
 echo "Type the number..."
@@ -75,11 +75,11 @@ case $CHOICE in
     1 )
 			git config --global pull.rebase false
 			git config --global push.default simple
-			git config --global user.name "arcolinuxz"
-			git config --global user.email "arcolinuxinfo@gmail.com"
-			sudo git config --system core.editor nano
-			#git config --global credential.helper cache
-			#git config --global credential.helper 'cache --timeout=32000'
+			git config --global user.name "Jay Bharadia"
+			git config --global user.email "bharadia2@gmail.com"
+			sudo git config --system core.editor nvim
+			git config --global credential.helper cache
+			git config --global credential.helper 'cache --timeout=32000'
       git remote set-url origin git@github.com-arc:$githubdir/$project
       echo
       echo "Everything set"
